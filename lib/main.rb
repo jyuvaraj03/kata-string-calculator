@@ -11,10 +11,7 @@ class StringCalculator
   private
 
   def parse_numbers(input_str)
-    delimiters = get_delimiters(input_str)
-    numbers_str = input_str.split(DELIMITER_SPECIFICATION_PATTERN).last || ""
-    split_number_strs = split_numbers(numbers_str, delimiters)
-    split_number_strs.map(&:to_i)
+    StringCalculatorInput.new(input_str).numbers
   end
 
   def get_delimiters(numbers_str)
@@ -22,6 +19,36 @@ class StringCalculator
   end
 
   def split_numbers(numbers_str, delimiters = DEFAULT_DELIMITERS)
+    numbers_str
+      .split(/[#{delimiters.join}]+/)
+  end
+end
+
+class StringCalculatorInput
+  DEFAULT_DELIMITERS = [',', "\n"].freeze
+  DELIMITER_SPECIFICATION_PATTERN = /\/\/(?<delimiter>.)\n/.freeze
+
+  attr_reader :input_str
+
+  def initialize(input_str)
+    @input_str = input_str
+  end
+
+  def numbers
+    split_numbers.map(&:to_i)
+  end
+
+  private
+
+  def delimiters
+    input_str.match(DELIMITER_SPECIFICATION_PATTERN)&.captures || DEFAULT_DELIMITERS
+  end
+
+  def numbers_str
+    input_str.split(DELIMITER_SPECIFICATION_PATTERN).last || ''
+  end
+
+  def split_numbers
     numbers_str
       .split(/[#{delimiters.join}]+/)
   end
