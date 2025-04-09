@@ -11,6 +11,6 @@
     "extensions": [
         "shopify.ruby-lsp"
     ],
-    "postCreateCommand": "sudo chown -R ${localEnv:USER} /workspace && /workspace/.devcontainer/install-dotfiles.sh",
+    "postCreateCommand": "sudo chown -R ${localEnv:USER} /workspace",
     "initializeCommand": "echo \"LOCAL_UID=$(id -u)\nLOCAL_GID=$(id -g)\nLOCAL_USER=${localEnv:USER}\" > .devcontainer/.env"
 }
