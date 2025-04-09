@@ -13,8 +13,8 @@ class StringCalculator
   end
 
   def validate(numbers)
-    negative_number = numbers.find(&:negative?)
-    raise "negative numbers not allowed #{negative_number}" unless negative_number.nil?
+    negative_numbers = numbers.filter(&:negative?)
+    raise "negative numbers not allowed #{negative_numbers.join(',')}" unless negative_numbers.empty?
   end
 end
 
