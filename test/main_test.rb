@@ -1,8 +1,8 @@
 require_relative 'test_helper'
 require 'main'
 
-class GreeterTest < Minitest::Test
-  def test_hello
-    assert_equal "Hello", Greeter.new.hello
+class StringCalculatorTest < Minitest::Test
+  def test_string_calculator_adds
+    assert StringCalculator.new.respond_to?(:add)
   end
 end

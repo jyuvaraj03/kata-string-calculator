@@ -1,5 +1,4 @@
-class Greeter
-  def hello
-    "Hello"
+class StringCalculator
+  def add
   end
 end
