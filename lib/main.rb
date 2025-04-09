@@ -8,7 +8,7 @@ class StringCalculator
   private
 
   def parse_numbers(numbers_str)
-    split_number_strs = numbers_str.split(',')
+    split_number_strs = numbers_str.split(',').flat_map { |split_str| split_str.split("\n") }
     split_number_strs.map(&:to_i)
   end
 end

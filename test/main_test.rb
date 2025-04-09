@@ -25,4 +25,9 @@ class StringCalculatorTest < Minitest::Test
   def test_add_return_sum_on_multiple_nums
     assert_equal 10, @calculator.add('1,2,3,4')
   end
+
+  def test_add_handles_input_with_newline
+    assert_equal 6, @calculator.add("1\n2,3")
+    assert_equal 6, @calculator.add("1,2\n3")
+  end
 end
