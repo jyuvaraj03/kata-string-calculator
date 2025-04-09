@@ -1,7 +1,4 @@
 class StringCalculator
-  DEFAULT_DELIMITERS = [',', "\n"].freeze
-  DELIMITER_SPECIFICATION_PATTERN = /\/\/(?<delimiter>.)\n/.freeze
-
   def add(input_str)
     numbers = parse_numbers(input_str)
 
@@ -12,15 +9,6 @@ class StringCalculator
 
   def parse_numbers(input_str)
     StringCalculatorInput.new(input_str).numbers
-  end
-
-  def get_delimiters(numbers_str)
-    numbers_str.match(DELIMITER_SPECIFICATION_PATTERN)&.captures || DEFAULT_DELIMITERS
-  end
-
-  def split_numbers(numbers_str, delimiters = DEFAULT_DELIMITERS)
-    numbers_str
-      .split(/[#{delimiters.join}]+/)
   end
 end
 
