@@ -1,5 +1,5 @@
 {
-    "name": "one",
+    "name": "kata-string-calculator",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspace",
