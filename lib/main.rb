@@ -1,4 +1,6 @@
 class StringCalculator
+  DEFAULT_SEPARATORS = [',', "\n"].freeze
+
   def add(numbers_str)
     numbers = parse_numbers(numbers_str)
 
@@ -12,9 +14,8 @@ class StringCalculator
     split_number_strs.map(&:to_i)
   end
 
-  def split_numbers(numbers_str)
+  def split_numbers(numbers_str, separators = DEFAULT_SEPARATORS)
     numbers_str
-      .split(',')
-      .flat_map { |split_str| split_str.split("\n") }
+      .split(/[#{separators.join}]+/)
   end
 end
