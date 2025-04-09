@@ -2,6 +2,10 @@ class StringCalculator
   def add(numbers_str)
     numbers = numbers_str.split(',')
 
-    numbers[0].to_i + numbers[1].to_i
+    sum = 0
+    numbers.each do |number|
+      sum += number.to_i
+    end
+    sum
   end
 end
