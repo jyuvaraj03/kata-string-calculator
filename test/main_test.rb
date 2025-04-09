@@ -35,3 +35,29 @@ class StringCalculatorTest < Minitest::Test
     assert_equal 3, @calculator.add("//;\n1;2")
   end
 end
+
+class StringCalculatorInputTest < Minitest::Test
+  def test_numbers_for_empty_str
+    assert_equal [], StringCalculatorInput.new('').numbers
+  end
+
+  def test_numbers_for_single_number
+    assert_equal [101], StringCalculatorInput.new('101').numbers
+  end
+
+  def test_numbers_for_multiple_numbers
+    assert_equal [101, 10], StringCalculatorInput.new('101,10').numbers
+  end
+
+  def test_numbers_with_newline
+    assert_equal [101, 10], StringCalculatorInput.new("101\n10").numbers
+  end
+
+  def test_numbers_with_newline_and_comma
+    assert_equal [101, 10, 1], StringCalculatorInput.new("101\n10,1").numbers
+  end
+
+  def test_numbers_with_custom_delimiter
+    assert_equal [1, 2], StringCalculatorInput.new("//;\n1;2").numbers
+  end
+end
