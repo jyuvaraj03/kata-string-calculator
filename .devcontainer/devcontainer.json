@@ -1,0 +1,16 @@
+{
+    "name": "one",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "${localEnv:USER}",
+    "updateRemoteUserUID": true,
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "extensions": [
+        "shopify.ruby-lsp"
+    ],
+    "postCreateCommand": "sudo chown -R ${localEnv:USER} /workspace && /workspace/.devcontainer/install-dotfiles.sh",
+    "initializeCommand": "echo \"LOCAL_UID=$(id -u)\nLOCAL_GID=$(id -g)\nLOCAL_USER=${localEnv:USER}\" > .devcontainer/.env"
+}
