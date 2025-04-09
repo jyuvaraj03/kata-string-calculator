@@ -1,4 +1,5 @@
 class StringCalculator
-  def add
+  def add(_numbers)
+    0
   end
 end
