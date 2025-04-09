@@ -1,6 +1,7 @@
 class StringCalculator
   def add(input_str)
     numbers = parse_numbers(input_str)
+    validate(numbers)
 
     numbers.inject(0, :+)
   end
@@ -9,6 +10,11 @@ class StringCalculator
 
   def parse_numbers(input_str)
     StringCalculatorInput.new(input_str).numbers
+  end
+
+  def validate(numbers)
+    negative_number = numbers.find(&:negative?)
+    raise "negative numbers not allowed #{negative_number}" unless negative_number.nil?
   end
 end
 
