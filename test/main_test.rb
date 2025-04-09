@@ -2,11 +2,19 @@ require_relative 'test_helper'
 require 'main'
 
 class StringCalculatorTest < Minitest::Test
+  def setup
+    @calculator = StringCalculator.new
+  end
+
   def test_string_calculator_adds
-    assert StringCalculator.new.respond_to?(:add)
+    assert @calculator.respond_to?(:add)
   end
 
   def test_add_returns_zero_on_empty_string
-    assert_equal 0, StringCalculator.new.add('')
+    assert_equal 0, @calculator.add('')
+  end
+
+  def test_add_return_num_on_single_num
+    assert_equal 1, @calculator.add('1')
   end
 end
