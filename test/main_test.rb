@@ -35,6 +35,14 @@ class StringCalculatorTest < Minitest::Test
     assert_equal 3, @calculator.add("//;\n1;2")
   end
 
+  def test_star_delimiter_performs_multiplication
+    assert_equal 2, @calculator.add("//*\n1*2")
+  end
+
+  def test_star_delimiter_performs_multiplication_with_zero
+    assert_equal 0, @calculator.add("//*\n1*2*0")
+  end
+
   def test_add_throws_on_single_negative_number
     exception = assert_raises do
       @calculator.add("-1,2")
@@ -73,5 +81,17 @@ class StringCalculatorInputTest < Minitest::Test
 
   def test_numbers_with_custom_delimiter
     assert_equal [1, 2], StringCalculatorInput.new("//;\n1;2").numbers
+  end
+
+  def test_numbers_with_star_delimiter
+    assert_equal [1, 2], StringCalculatorInput.new("//*\n1*2").numbers
+  end
+
+  def test_operation_of_input
+    assert_equal :+, StringCalculatorInput.new("//;\n1;2").operation
+  end
+
+  def test_operation_of_input_with_star_delimiter
+    assert_equal :*, StringCalculatorInput.new("//*\n1*2").operation
   end
 end

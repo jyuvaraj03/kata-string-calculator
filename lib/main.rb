@@ -1,15 +1,22 @@
 class StringCalculator
   def add(input_str)
-    numbers = parse_numbers(input_str)
+    numbers, operation  parse_input(input_str)
     validate(numbers)
+
+    return multiply(numbers) if operation == :*
 
     numbers.inject(0, :+)
   end
 
   private
 
-  def parse_numbers(input_str)
-    StringCalculatorInput.new(input_str).numbers
+  def multiply(numbers)
+    numbers.inject(1, :*)
+  end
+
+  def parse_input(input_str)
+    calculator_input = StringCalculatorInput.new(input_str)
+    [calculator_input.numbers, calculator_input.operation]
   end
 
   def validate(numbers)
@@ -30,6 +37,11 @@ class StringCalculatorInput
 
   def numbers
     split_numbers.map(&:to_i)
+  end
+
+  def operation
+    return :* if delimiters.first == '*'
+    :+
   end
 
   private
